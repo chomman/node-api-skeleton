@@ -1,0 +1,13 @@
+{
+    "defaultEnv": {"ENV": "NODE_ENV"},
+    "dev": {
+        "driver": "mongodb",
+        "database": "internal-db-dev",
+        "host": "localhost"
+    },
+    "prod": {
+        "driver": "mongodb",
+        "database": "internal-db",
+        "host": "localhost"
+    }
+}

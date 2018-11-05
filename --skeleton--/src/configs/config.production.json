@@ -1,0 +1,29 @@
+{
+  "database": [
+    {
+      "name": "mongodb",
+      "type": "mongodb",
+      "host": "localhost",
+      "port": 27017,
+      "database": "internal-db",
+      "entities": ["build/database/entities/mongo/*.js"]
+    },
+    {
+      "name": "mysqldb",
+      "type": "mysql",
+      "host": "localhost",
+      "port": 3306,
+      "username": "root",
+      "password": "admin",
+      "database": "mydb",
+      "entities": ["build/database/entities/mysql/*.js"]
+    }
+  ],
+  "server": {
+    "port": 3000,
+    "jwtSecret": "random-secret-password",
+    "jwtExpiration": "1h",
+    "routePrefix": "/a",
+    "plugins": ["logger", "swagger"]
+  }
+}
