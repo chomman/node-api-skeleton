@@ -67,7 +67,13 @@ export default class MemberHandler {
     const id = request.params["id"];
 
     const memberRepository = this.database.mongoConnection.getRepository(Member);
-    const member = await memberRepository.findOne(id);
+    const member = await memberRepository.findOne(id,
+      {
+        cache: {
+          id: `memberInfo-${id}`,
+          milliseconds: 25000
+        }
+      });
 
     if (member) {
       return member;
