@@ -15,8 +15,11 @@ const buildProxyGateway = (proxyConfigs: IProxyConfigurations) => {
         proxy: s.config
       }
     });
-    // Register documentation routes
-    r = _.concat(r, buildWildcardRoutes(s, ["docs", "swaggerui/{c*}", "swagger.json"], 'GET'));
+
+    if (process.env.NODE_ENV !== "production") {
+      // Register documentation routes
+      r = _.concat(r, buildWildcardRoutes(s, ["docs", "swaggerui/{c*}", "swagger.json"], 'GET'));
+    }
   });
 
   return r;
@@ -24,18 +27,30 @@ const buildProxyGateway = (proxyConfigs: IProxyConfigurations) => {
 
 const buildWildcardRoutes = (service: IProxyService, patterns: string[], method: string) => {
   const r = [];
+
   patterns.map(p => {
     r.push({
       method: method,
-        path: `/${service.prefixPath}/${p}`,
-        handler: {
-          proxy: service.config
-        },
-        options: {
-          auth: false,
-          tags: p === 'docs' ? [service.tag, "api"] : []
-        }
+      path: `/${service.prefixPath}/${p}`,
+      handler: {
+        proxy: service.config
+      },
+      options: {
+        auth: false,
+        tags: p === 'docs' ? [service.tag, "api"] : []
+      }
     });
+  });
+
+  r.push({
+    method: method,
+    path: `/${service.prefixPath}`,
+    handler: {
+      proxy: service.config
+    },
+    options: {
+      auth: false
+    }
   });
 
   return r;

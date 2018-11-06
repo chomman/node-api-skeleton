@@ -1,25 +1,18 @@
-FROM mhart/alpine-node:6.9.1
+FROM node:8
 
-# create a specific user to run this container
-RUN adduser -S -D my-user
+ADD . /usr/src/a_service
+# Create app directory
+WORKDIR /usr/src/a_service
 
-# add files to container
-ADD . /app
+# Install app dependencies
+COPY package*.json gulpfile.js tsconfig.json ./
 
-# specify the working directory
-WORKDIR /app
-
-RUN chmod -R 777 .
-
-# build process
 RUN npm install
+# RUN npm install --only=production
 RUN npm run build
-RUN npm prune --production
 
-# run the container using a specific user
-USER my-user
+# Bundle app source
+COPY . .
 
-EXPOSE 8080
-
-# run application
-CMD ["npm", "start"]
+EXPOSE 5000
+CMD [ "npm", "start" ]
