@@ -1,17 +1,8 @@
-import * as nconf from "nconf";
-import * as path from "path";
 import { ConnectionOptions } from "typeorm";
 import * as _ from "lodash";
 
 //Read Configurations
-const configs = new nconf.Provider({
-  env: true,
-  argv: true,
-  store: {
-    type: "file",
-    file: path.join(__dirname, `./config.${process.env.NODE_ENV || "dev"}.json`)
-  }
-});
+const configs = require(`./config.${process.env.NODE_ENV || "dev"}`);
 
 export interface IServerConfigurations {
   port: number;
@@ -46,15 +37,15 @@ export interface IProxyConfigurations {
 }
 
 export function getDatabaseConfig(): ConnectionOptions[] {
-  return configs.get("database");
+  return configs.database;
 }
 
 export function getServerConfigs(): IServerConfigurations {
-  return configs.get("server");
+  return configs.server;
 }
 
 export function getProxyConfig(): IProxyConfigurations {
-  return configs.get("proxy");
+  return configs.proxy;
 }
 
 export function getProxiesInfo(): IProxyInfo[] {

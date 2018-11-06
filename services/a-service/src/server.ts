@@ -9,7 +9,7 @@ export async function init(
   database: IDatabase
 ): Promise<Hapi.Server> {
   try {
-    const port = process.env.PORT || configs.port;
+    const port = configs.port;
     const server = new Hapi.Server({
       debug: { request: ['error'] },
       port: port,
