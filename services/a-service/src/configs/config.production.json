@@ -24,6 +24,6 @@
     "jwtSecret": "random-secret-password",
     "jwtExpiration": "1h",
     "routePrefix": "/a",
-    "plugins": ["logger", "swagger"]
+    "plugins": ["logger", "swagger", "versioning"]
   }
 }

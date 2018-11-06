@@ -38,7 +38,7 @@ export default function (
     },
     {
       method: "POST",
-      path: "/login",
+      path: "/users/login",
       options: {
         auth: false,
         handler: userHandler.loginUser,

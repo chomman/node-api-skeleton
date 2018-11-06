@@ -64,10 +64,10 @@ export default class MemberHandler {
   }
 
   public async getMemberById(request: IRequest, h: Hapi.ResponseToolkit) {
-    let id = request.params["id"];
+    const id = request.params["id"];
 
     const memberRepository = this.database.mongoConnection.getRepository(Member);
-    let member = await memberRepository.findOne(id);
+    const member = await memberRepository.findOne(id);
 
     if (member) {
       return member;

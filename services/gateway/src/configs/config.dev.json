@@ -21,7 +21,9 @@
   "proxy": {
     "services": [
       {
-        "name": "a",
+        "tag": "a",
+        "description": "Documentation for service A",
+        "prefixPath": "a",
         "config": {
           "host": "localhost",
           "port": 5000,
