@@ -5,6 +5,7 @@ import MemberHandler from "./member-handler";
 import * as MemberValidator from "./member-validator";
 import { IDatabase } from "../../database/database";
 import { IServerConfigurations } from "../../configs";
+import { jwtValidator } from '../../common/validators';
 
 export default function (
   server: Hapi.Server,
@@ -24,7 +25,8 @@ export default function (
       validate: {
         params: {
           id: Joi.string().required()
-        }
+        },
+        headers: jwtValidator
       },
       plugins: {
         "hapi-swagger": {
@@ -50,7 +52,8 @@ export default function (
       validate: {
         params: {
           id: Joi.string().required()
-        }
+        },
+        headers: jwtValidator
       },
       plugins: {
         "hapi-swagger": {
@@ -77,7 +80,8 @@ export default function (
         params: {
           id: Joi.string().required()
         },
-        payload: MemberValidator.updateMemberModel
+        payload: MemberValidator.updateMemberModel,
+        headers: jwtValidator
       },
       plugins: {
         "hapi-swagger": {
@@ -101,7 +105,8 @@ export default function (
       tags: ["api", "members"],
       description: "Create a Member.",
       validate: {
-        payload: MemberValidator.createMemberModel
+        payload: MemberValidator.createMemberModel,
+        headers: jwtValidator
       },
       plugins: {
         "hapi-swagger": {

@@ -21,12 +21,24 @@ export interface IServerConfigurations {
   routePrefix: string;
 }
 
-export interface IProxyService {
+export interface IProxyServiceConfig {
   host: string;
   port: number;
   protocol: 'http' | 'https';
   passThrough: boolean;
   redirects: number;
+}
+
+export interface IProxyService {
+  tag: string;
+  description: string;
+  prefixPath: string;
+  config: object;
+}
+
+export interface IProxyInfo {
+  name: string;
+  description: string;
 }
 
 export interface IProxyConfigurations {
@@ -41,6 +53,19 @@ export function getServerConfigs(): IServerConfigurations {
   return configs.get("server");
 }
 
-export function getProxyConfig(name: string): IProxyConfigurations {
-  return _.find(configs.get("proxy").services || [], (i) => i.name === name).config || {};
+export function getProxyConfig(): IProxyConfigurations {
+  return configs.get("proxy");
+}
+
+export function getProxiesInfo(): IProxyInfo[] {
+  const r: IProxyInfo[] = [];
+  const services = getProxyConfig().services || [];
+  services.map(s => {
+    r.push({
+      name: s.tag,
+      description: s.description
+    });
+  });
+
+  return r;
 }

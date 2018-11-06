@@ -1,5 +1,8 @@
-import { IPlugin } from "../interfaces";
 import * as Hapi from "hapi";
+import * as _ from 'lodash';
+
+import { IPlugin } from "../interfaces";
+import { getProxiesInfo } from '../../configs';
 
 const register = async (server: Hapi.Server): Promise<void> => {
   try {
@@ -14,12 +17,12 @@ const register = async (server: Hapi.Server): Promise<void> => {
             description: "My Api Documentation",
             version: "1.0"
           },
-          tags: [
+          tags: _.concat([
             {
               name: "users",
               description: "Api users interface."
             }
-          ],
+          ], getProxiesInfo()),
           swaggerUI: true,
           documentationPage: true,
           documentationPath: "/docs"

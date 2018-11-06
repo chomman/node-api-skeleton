@@ -41,7 +41,7 @@ export async function init(
       );
       pluginPromises.push(plugin.register(server, pluginOptions));
     });
-    
+
     await server.register({ plugin: require('h2o2') });
     await Promise.all(pluginPromises);
     console.log("All plugins registered successfully.");
