@@ -3,11 +3,11 @@
     "dev": {
         "driver": "mongodb",
         "database": "internal-db-dev",
-        "host": "localhost"
+        "host": {"ENV": "MONGO_HOST"}
     },
     "prod": {
         "driver": "mongodb",
         "database": "internal-db",
-        "host": "localhost"
+        "host": {"ENV": "MONGO_HOST"}
     }
 }

@@ -1,4 +1,5 @@
 /* Replace with your SQL commands */
+use gwdb;
 create table if not exists users (
    id BIGINT(20) NOT NULL AUTO_INCREMENT,
    uuid VARCHAR(36) NOT NULL,

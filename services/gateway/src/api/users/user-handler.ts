@@ -25,7 +25,7 @@ export default class UserHandler {
 
     try {
       const userRepository = this.database.mysqlConnection.getRepository(User);
-      const existingUser = userRepository.findOne({where: u => u === newUser.email});
+      const existingUser = await userRepository.findOne({where: u => u === newUser.email});
 
       if (existingUser) {
         return Boom.conflict("User already existed");

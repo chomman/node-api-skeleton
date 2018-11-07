@@ -15,6 +15,7 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
+  console.log(process.env.MONGO_HOST);
   return db.createCollection('members');
 };
 

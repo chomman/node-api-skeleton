@@ -12,9 +12,7 @@
     "tsc": "tsc",
     "tsc-watch": "tsc -w",
     "build": "gulp clean && gulp build",
-    "start": "node build/index.js",
-    "dbmigrate:mongo": "node node_modules/db-migrate/bin/db-migrate --config ./migrations/mongo/database.json -m ./migrations/mongo",
-    "dbmigrate:mysql": "node node_modules/db-migrate/bin/db-migrate --config ./migrations/mysql/database.json -m ./migrations/mysql"
+    "start": "node build/index.js"
   },
   "dependencies": {
     "boom": "7.2.0",
@@ -50,9 +48,6 @@
     "@types/node": "^8.9.0",
     "@types/sinon": "^4.1.3",
     "chai": "^4.1.2",
-    "db-migrate": "^0.11.4",
-    "db-migrate-mongodb": "^1.5.0",
-    "db-migrate-mysql": "^1.1.10",
     "gulp": "3.9.1",
     "gulp-env": "0.4.0",
     "gulp-mocha": "5.0.0",

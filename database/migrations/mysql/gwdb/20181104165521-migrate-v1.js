@@ -19,6 +19,9 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
+  console.log(process.env.MYSQL_HOST);
+  console.log(process.env.MYSQL_USERNAME);
+
   var filePath = path.join(__dirname, 'sqls', '20181104165521-migrate-v1-up.sql');
   return new Promise( function( resolve, reject ) {
     fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
@@ -34,6 +37,8 @@ exports.up = function(db) {
 };
 
 exports.down = function(db) {
+  console.log(process.env.MYSQL_HOST);
+  console.log(process.env.MYSQL_USERNAME);
   var filePath = path.join(__dirname, 'sqls', '20181104165521-migrate-v1-down.sql');
   return new Promise( function( resolve, reject ) {
     fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){

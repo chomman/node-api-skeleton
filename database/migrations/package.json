@@ -1,0 +1,19 @@
+{
+  "name": "migrations",
+  "version": "1.0.0",
+  "description": "Migrations services",
+  "main": "index.js",
+  "scripts": {
+    "dbmigrate:mongo": "node node_modules/db-migrate/bin/db-migrate --config ./mongo/database.json -m ./mongo",
+    "dbmigrate:mysql-gwdb": "node node_modules/db-migrate/bin/db-migrate --config ./mysql/gwdb/database.json -m ./mysql/gwdb",
+    "dbmigrate:all-up": "npm run dbmigrate:mongo up && npm run dbmigrate:mysql-gwdb up",
+    "dbmigrate:all-down": "npm run dbmigrate:mongo down && npm run dbmigrate:mysql-gwdb down"
+  },
+  "author": "Mann",
+  "license": "MIT",
+  "dependencies": {
+    "db-migrate": "^0.11.4",
+    "db-migrate-mongodb": "^1.5.0",
+    "db-migrate-mysql": "^1.1.10"
+  }
+}

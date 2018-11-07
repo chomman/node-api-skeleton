@@ -2,16 +2,17 @@
     "defaultEnv": {"ENV": "NODE_ENV"},
     "dev": {
         "driver": "mysql",
-        "user": "root",
-        "password": "admin",
-        "database": "mydb",
+        "host": {"ENV": "MYSQL_HOST"},
+        "user": {"ENV": "MYSQL_USERNAME"},
+        "password": {"ENV": "MYSQL_PASSWORD"},
+        "database": "gwdb",
         "multipleStatements": true
     },
     "prod": {
         "driver": "mysql",
         "user": "root",
         "password": "admin",
-        "database": "mydb",
+        "database": "gwdb",
         "multipleStatements": true
     }
 }
