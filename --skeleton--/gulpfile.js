@@ -28,17 +28,9 @@ gulp.task('watch', shell.task([
 ]));
 
 /**
- * Copy config files
- */
-gulp.task('configs', (cb) => {
-  return gulp.src("src/configs/*.json")
-    .pipe(gulp.dest('./build/configs'));
-});
-
-/**
  * Build the project.
  */
-gulp.task('build', ['compile', 'configs'], () => {
+gulp.task('build', ['compile'], () => {
   console.log('Building the project ...');
 });
 

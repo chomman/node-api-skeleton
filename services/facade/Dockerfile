@@ -1,8 +1,8 @@
 FROM mhart/alpine-node:8.12.0
 
-ADD . /usr/src/gateway
+ADD . /usr/src/facade
 # Create app directory
-WORKDIR /usr/src/gateway
+WORKDIR /usr/src/facade
 
 # Install app dependencies
 COPY package*.json gulpfile.js tsconfig.json ./

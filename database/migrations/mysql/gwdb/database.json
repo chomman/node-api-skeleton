@@ -10,8 +10,9 @@
     },
     "prod": {
         "driver": "mysql",
-        "user": "root",
-        "password": "admin",
+        "host": {"ENV": "MYSQL_HOST"},
+        "user": {"ENV": "MYSQL_USERNAME"},
+        "password": {"ENV": "MYSQL_PASSWORD"},
         "database": "gwdb",
         "multipleStatements": true
     }
