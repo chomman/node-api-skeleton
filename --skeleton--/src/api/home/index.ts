@@ -7,7 +7,7 @@ export function init(
 ) {
   server.route({
     method: "GET",
-    path: "/a",
+    path: "/",
     handler: (request: IRequest, h: Hapi.ResponseToolkit) => {
       return h.redirect('/a/docs');
     }

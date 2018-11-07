@@ -2,7 +2,7 @@ version: "2"
 services:
   gateway:
     container_name: gateway
-    restart: on-failure
+    restart: always
     build: ./services/gateway
     ports:
       - "9090:8080"
@@ -23,9 +23,10 @@ services:
       - redis
       - mongo
       - mysql
+      - a_service
   a_service:
     container_name: a_service
-    restart: on-failure
+    restart: always
     build: ./services/a-service
     ports:
       - "3000:5000"
@@ -58,7 +59,6 @@ services:
   mysql:
     build: ./database/docker/mysql
     container_name: mysql_5.7
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_USER: user
