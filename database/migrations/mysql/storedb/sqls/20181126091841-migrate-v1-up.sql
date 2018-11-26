@@ -1,6 +1,30 @@
 /* Replace with your SQL commands */
 use storedb;
 
+create table user_profiles (
+   id                serial                   not null      ,
+   user_id           bigint(20)                   not null      ,
+   name              varchar(255)                           ,
+   email             varchar(50)              not null      ,
+   home_phone        varchar(20)                            ,
+   mobile_phone      varchar(20)                            ,
+   first_name        varchar(255)                           ,
+   last_name         varchar(255)                           ,
+   created_at timestamp  not null default CURRENT_TIMESTAMP,
+   updated_at  timestamp  not null default CURRENT_TIMESTAMP,
+   constraint pk_user_profiles primary key (id)
+)   ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+create table user_addresses (
+   id                serial                   not null      ,
+   user_profile_id   bigint(20)                   not null      ,
+   ship_to_address   varchar(255)             not null      ,
+   bill_to_address   varchar(255)             not null      ,
+   created_at timestamp  not null default CURRENT_TIMESTAMP,
+   updated_at  timestamp  not null default CURRENT_TIMESTAMP,
+   constraint pk_user_addresses primary key (id)
+)   ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 create table categories (
    id          serial                   not null,
    name        varchar(255)             not null,
@@ -9,6 +33,7 @@ create table categories (
    updated_at  timestamp  not null default CURRENT_TIMESTAMP,
    constraint pk_categories primary key (id)
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 create table products (
    id                serial                   not null      ,
    sku               varchar(255)             not null      ,
@@ -23,6 +48,7 @@ create table products (
    updated_at  timestamp  not null default CURRENT_TIMESTAMP,
    constraint pk_products primary key (id)
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 create table tags (
    id          serial                   not null,
    name        varchar(255)             not null,
@@ -30,17 +56,19 @@ create table tags (
    updated_at  timestamp  not null default CURRENT_TIMESTAMP,
    constraint pk_tags primary key (id)
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 create table sales_orders (
    id          serial                   not null,
    order_date  date                     not null,
    total       numeric                  not null,
    coupon_id   integer                          ,
    session_id  varchar(255)             not null,
-   user_id     integer                  not null,
+   user_id     bigint(20)                  not null,
    created_at timestamp  not null default CURRENT_TIMESTAMP,
    updated_at  timestamp  not null default CURRENT_TIMESTAMP,
    constraint pk_sales_orders primary key (id)
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 create table coupons (
    id          serial                   not null      ,
    code        varchar(255)             not null      ,
@@ -54,6 +82,7 @@ create table coupons (
    updated_at  timestamp  not null default CURRENT_TIMESTAMP,
    constraint pk_coupons primary key (id)
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 create table product_tags (
    product_id  integer                  not null,
    tag_id      integer                  not null,
@@ -61,6 +90,7 @@ create table product_tags (
    updated_at  timestamp  not null default CURRENT_TIMESTAMP,
    constraint pk_product_tags primary key (product_id,tag_id)
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 create table cc_transactions (
    id                 serial                   not null,
    code               varchar(255)                     ,
@@ -76,6 +106,7 @@ create table cc_transactions (
    updated_at  timestamp  not null default CURRENT_TIMESTAMP,
    constraint pk_cc_transactions primary key (id)
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 create table sessions (
    id          varchar(255)             not null,
    data        text                             ,
@@ -83,6 +114,7 @@ create table sessions (
    updated_at  timestamp  not null default CURRENT_TIMESTAMP,
    constraint pk_sessions primary key (id)
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 create table product_statuses (
    id          serial                   not null,
    name        varchar(255)             not null,
@@ -90,6 +122,7 @@ create table product_statuses (
    updated_at  timestamp  not null default CURRENT_TIMESTAMP,
    constraint pk_product_statuses primary key (id)
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 create table product_categories (
    category_id integer                  not null,
    product_id  integer                  not null,
@@ -97,6 +130,7 @@ create table product_categories (
    updated_at  timestamp  not null default CURRENT_TIMESTAMP,
    constraint pk_product_categories primary key (category_id,product_id)
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 create table order_products (
    id          serial                   not null,
    order_id    integer                          ,
@@ -111,15 +145,6 @@ create table order_products (
    constraint pk_order_products primary key (id)
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- get_view_create
-
--- get_permissions_create
-
--- get_inserts
-
--- get_smallpackage_post_sql
-
--- get_associations_create
 alter table sales_orders add constraint fk_session_sales_order 
     foreign key (session_id)
     references sessions (id) ;
