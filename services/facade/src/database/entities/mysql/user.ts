@@ -16,11 +16,11 @@ export class User {
     password: string;
 
     @Column()
-    name: string;
+    active: boolean;
     
-    @Column()
+    @Column({ name: 'created_at' })
     createdAt: Date;
 
-    @Column()
+    @Column({ name: 'updated_at' })
     updateAt: Date;
 }

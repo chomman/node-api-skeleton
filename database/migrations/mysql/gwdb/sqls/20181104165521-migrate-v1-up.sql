@@ -1,12 +1,26 @@
 /* Replace with your SQL commands */
 use gwdb;
-create table if not exists users (
-   id BIGINT(20) NOT NULL AUTO_INCREMENT,
-   uuid VARCHAR(36) NOT NULL,
-   email VARCHAR(100) NOT NULL UNIQUE,
-   password VARCHAR(255) NOT NULL,
-   name VARCHAR(100) NOT NULL,
-   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-   updateAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-   PRIMARY KEY ( id )
-);
+create table users (
+   id          serial                   not null     ,
+   uuid        varchar(36)              not null     ,
+   email       varchar(255)             not null     ,
+   password    varchar(255)             not null     ,
+   active      bool                      default true,
+   created_at timestamp not null     default CURRENT_TIMESTAMP,
+   updated_at  timestamp not null     default CURRENT_TIMESTAMP,
+   constraint pk_users primary key (id)
+)   ENGINE=InnoDB DEFAULT CHARSET=latin1;
+create table roles (
+   id          serial                   not null,
+   name        varchar(255)             not null,
+   created_at timestamp  not null default CURRENT_TIMESTAMP,
+   updated_at  timestamp  not null default CURRENT_TIMESTAMP,
+   constraint pk_roles primary key (id)
+)   ENGINE=InnoDB DEFAULT CHARSET=latin1;
+create table user_roles (
+   user_id     integer                  not null,
+   role_id     integer                  not null,
+   created_at timestamp  not null default CURRENT_TIMESTAMP,
+   updated_at  timestamp  not null default CURRENT_TIMESTAMP,
+   constraint pk_user_roles primary key (user_id,role_id)
+)   ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -5,7 +5,7 @@ ADD . /usr/src/facade
 WORKDIR /usr/src/facade
 
 # Install app dependencies
-COPY package*.json gulpfile.js tsconfig.json ./
+COPY package*.json ./
 
 RUN npm install --quite
 RUN npm run build

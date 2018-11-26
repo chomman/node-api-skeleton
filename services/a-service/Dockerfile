@@ -5,7 +5,7 @@ ADD . /usr/src/a_service
 WORKDIR /usr/src/a_service
 
 # Install app dependencies
-COPY package*.json gulpfile.js tsconfig.json ./
+COPY package*.json ./
 
 RUN npm install --quite
 RUN npm run build

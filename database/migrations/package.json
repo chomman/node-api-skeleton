@@ -6,8 +6,9 @@
   "scripts": {
     "dbmigrate:mongo": "node node_modules/db-migrate/bin/db-migrate --config ./mongo/database.json -m ./mongo",
     "dbmigrate:mysql-gwdb": "node node_modules/db-migrate/bin/db-migrate --config ./mysql/gwdb/database.json -m ./mysql/gwdb",
-    "dbmigrate:all-up": "npm run dbmigrate:mongo up && npm run dbmigrate:mysql-gwdb up",
-    "dbmigrate:all-down": "npm run dbmigrate:mongo down && npm run dbmigrate:mysql-gwdb down"
+    "dbmigrate:mysql-storedb": "node node_modules/db-migrate/bin/db-migrate --config ./mysql/storedb/database.json -m ./mysql/storedb",
+    "dbmigrate:all-up": "npm run dbmigrate:mongo up && npm run dbmigrate:mysql-gwdb up && npm run dbmigrate:mysql-storedb up",
+    "dbmigrate:all-down": "npm run dbmigrate:mongo down && npm run dbmigrate:mysql-gwdb down && npm run dbmigrate:mysql-storedb down"
   },
   "author": "Mann",
   "license": "MIT",

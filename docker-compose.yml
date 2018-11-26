@@ -9,8 +9,8 @@ services:
     environment:
       MYSQL_HOST: mysql
       MYSQL_PORT: 3306
-      MYSQL_USERNAME: root
-      MYSQL_PASSWORD: admin
+      MYSQL_USERNAME: storeuser
+      MYSQL_PASSWORD: password
       MYSQL_DATABASE: gwdb
       A_SERVICE_HOST: a_service
       A_SERVICE_PORT: 5000
@@ -20,9 +20,6 @@ services:
       - mysql
       - a_service
     depends_on:
-      - redis
-      - mongo
-      - mysql
       - a_service
   a_service:
     container_name: a_service
@@ -36,8 +33,9 @@ services:
       MONGO_PORT: 27017
       MYSQL_HOST: mysql
       MYSQL_PORT: 3306
-      MYSQL_USERNAME: root
-      MYSQL_PASSWORD: admin
+      MYSQL_DATABASE: storedb
+      MYSQL_USERNAME: storeuser
+      MYSQL_PASSWORD: password
     links:
       - redis
       - mongo
@@ -58,13 +56,11 @@ services:
       - "33944:27017"
   mysql:
     build: ./database/docker/mysql
-    container_name: mysql_5.7
+    container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
     ports:
-      - 3307:3306
+      - 3306:3306
   db_migration:
     build: ./database/migrations
     restart: on-failure

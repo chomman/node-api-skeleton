@@ -22,7 +22,7 @@ module.exports = {
       port: process.env.MYSQL_PORT || 3306,
       username: process.env.MYSQL_USERNAME || "root",
       password: process.env.MYSQL_PASSWORD || "admin",
-      database: process.env.MYSQL_DATABASE || "mydb",
+      database: process.env.MYSQL_DATABASE || "storedb",
       entities: ["build/database/entities/mysql/*.js"]
     }
   ],

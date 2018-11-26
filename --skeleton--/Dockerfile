@@ -5,7 +5,7 @@ ADD . /usr/src/demo
 WORKDIR /usr/src/demo
 
 # Install app dependencies
-COPY package*.json gulpfile.js tsconfig.json ./
+COPY package*.json ./
 
 RUN npm install --quite
 RUN npm run build

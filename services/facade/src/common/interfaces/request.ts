@@ -10,4 +10,5 @@ export interface IRequestAuth extends Hapi.RequestAuth {
 
 export interface IRequest extends Hapi.Request {
   auth: IRequestAuth;
+  payload: any;
 }

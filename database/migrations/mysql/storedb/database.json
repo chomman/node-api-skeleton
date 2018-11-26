@@ -1,0 +1,19 @@
+{
+    "defaultEnv": {"ENV": "NODE_ENV"},
+    "dev": {
+        "driver": "mysql",
+        "host": {"ENV": "MYSQL_HOST"},
+        "user": {"ENV": "MYSQL_USERNAME"},
+        "password": {"ENV": "MYSQL_PASSWORD"},
+        "database": "storedb",
+        "multipleStatements": true
+    },
+    "prod": {
+        "driver": "mysql",
+        "host": {"ENV": "MYSQL_HOST"},
+        "user": {"ENV": "MYSQL_USERNAME"},
+        "password": {"ENV": "MYSQL_PASSWORD"},
+        "database": "storedb",
+        "multipleStatements": true
+    }
+}
